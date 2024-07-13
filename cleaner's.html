@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <title>cleaner's website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <header class="bg-green-500 text-white p-4">
+    <h1 class="text-3xl font-bold text-center">Cleaners website</h1>
+      <nav class="text-center mt-4">
+        <ul class="flex justify-center space-x-4">
+          <li><a href="#" class="hover-underline">Home</a></li>
+          <li><a href="#" class="hover-underline">About Us</a></li>
+          <li><a href="#" class="hover-underline">services</a></li>
+          <li><a href="#" class="hover-underline">Booking</a></li>
+          <li><a href="#" class="hover-underline">Contact Us</a></li>
+          <li><a href="#" class="hover-underline">FAQ</a></li>
+        </ul>
+      </nav>
+  </header>
+  <main class="p-4">
+    <section id="home" class="my-8">
+      <h2 class="text-2xl font-bold">Welcome to our cleaning service today!</h2>
+      <p class="mt-4">Book your cleaning service today.</p>
+    </section>
+
+    <section id="about" class="my-8">
+      <h2 class="text-2xl font-bold">About Us</h2>
+      <p class="mt-4">Information about the company/cleaners, missions and values.</p>
+    </section>
+
+    <section id="services" class="my-8">
+      <h2 class="text-2xl font-bold">Services</h2>
+      <p class="mt-4">Detailed descripitions of the services offered.</p>
+    </section>
+
+    <section id="booking" class="my-8"></section>
+    <h2 class="text-2xl font-bold">Booking</h2>
+    <form id="booking-form" class="mt-4 space-y-4">
+      <div>
+        <label for="name" class="block">Name:</label> 
+        <input type="text" id="name" name="name" required class="w-full border gray-300 rounded-md shadow-sm">
+        <option value="residential">Residential Cleaning</option>
+        <option value="commercial">Commercial Cleaning</option>
+        <option value="deep cleaning">Deep cleaning</option>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
