@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const puzzleContainer = document.getElementById('puzzle');
   const puzzleSize = 3;
   const pieces = [];
-  const imageSrc = "https://static.bandainamcoent.eu/high/naruto/naruto-storm-connections/00-page-setup/NSC-header-mobile.jpg"; // Update with your image path
+  const imageSrc = "https://d23.com/app/uploads/2015/06/snow41160x600.jpg"; // Update with your image path
   const imageSize = 300; // The size of the image in pixels (assumed to be a square)
 
   // Generate pieces
