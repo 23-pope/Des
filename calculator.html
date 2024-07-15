@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .calculator {
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            height: 540px;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        .calculator.dark {
+            background-color: #333333;
+        }
+
+        .display {
+            background-color: #e6e6e6;
+            text-align: right;
+            padding: 20px;
+            font-size: 2em;
+            color: #333;
+        }
+
+        .display.dark {
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .button {
+            border: 1px solid #e6e6e6;
+            padding: 25px;
+            font-size: 1.5em;
+            cursor: pointer;
+            user-select: none;
+            background-color: #fff;
+            transition: background-color 0.3s;
+            border-radius:44px;
+            justify-content:space-between;
+        }
+
+        .button.dark {
+            background-color: #444;
+            color: #fff;
+        }
+
+        .button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .button.orange {
+            background-color: #ffa500;
+            color: #fff;
+        }
+
+        .button.orange.dark {
+            background-color: #ff8c00;
+        }
+
+        .button:hover.orange {
+            background-color: #ff8c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator" id="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <div class="button" onclick="clearDisplay()">AC</div>
+            <div class="button">+/-</div>
+            <div class="button">%</div>
+            <div class="button orange">÷</div>
+            <div class="button">7</div>
+            <div class="button">8</div>
+            <div class="button">9</div>
+            <div class="button orange">×</div>
+            <div class="button">4</div>
+            <div class="button">5</div>
+            <div class="button">6</div>
+            <div class="button orange">-</div>
+            <div class="button">1</div>
+            <div class="button">2</div>
+            <div class="button">3</div>
+            <div class="button orange">+</div>
+            <div class="button">0</div>
+            <div class="button">.</div>
+            <div class="button" onclick="calculate()">=</div>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        const calculator = document.getElementById('calculator');
+
+        let currentInput = '';
+        let currentOperator = null;
+        let previousInput = '';
+
+        function updateDisplay() {
+            display.textContent = currentInput || '0';
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            previousInput = '';
+            currentOperator = null;
+            updateDisplay();
+        }
+
+        function appendNumber(number) {
+            currentInput += number;
+            updateDisplay();
+        }
+
+        function setOperator(operator) {
+            if (currentInput === '') return;
+            if (currentOperator !== null) calculate();
+            previousInput = currentInput;
+            currentOperator = operator;
+            currentInput = '';
+        }
+
+        function calculate() {
+            if (currentOperator === null || currentInput === '') return;
+            const prev = parseFloat(previousInput);
+            const current = parseFloat(currentInput);
+            if (isNaN(prev) || isNaN(current)) return;
+
+            let result;
+            switch (currentOperator) {
+                case '+':
+                    result = prev + current;
+                    break;
+                case '-':
+                    result = prev - current;
+                    break;
+                case '×':
+                    result = prev * current;
+                    break;
+                case '÷':
+                    result = prev / current;
+                    break;
+                default:
+                    return;
+            }
+            currentInput = result.toString();
+            currentOperator = null;
+            previousInput = '';
+            updateDisplay();
+        }
+
+        document.querySelectorAll('.button').forEach(button => {
+            button.addEventListener('click', () => {
+                if (!isNaN(button.textContent)) {
+                    appendNumber(button.textContent);
+                } else if (button.textContent === '.') {
+                    if (!currentInput.includes('.')) {
+                        currentInput += '.';
+                        updateDisplay();
+                    }
+                } else if (button.textContent === 'AC') {
+                    clearDisplay();
+                } else if (button.textContent === '=') {
+                    calculate();
+                } else {
+                    setOperator(button.textContent);
+                }
+            });
+        });
+
+        // Dark mode toggle
+        document.body.addEventListener('dblclick', () => {
+            calculator.classList.toggle('dark');
+            display.classList.toggle('dark');
+            document.querySelectorAll('.button').forEach(button => {
+                button.classList.toggle('dark');
+                if (button.classList.contains('orange')) {
+                    button.classList.toggle('orange-dark');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
