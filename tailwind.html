@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the + button */
+        .btn-plus {
+            background-color: #FF9500;
+            color: white;
+            font-size: 1.5rem;
+            border-radius: 0.375rem; /* same as rounded-md */
+        }
+    </style>
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-6 rounded-lg shadow-md max-w-xs w-full">
+        <div class="text-right mb-4 text-3xl" id="display">0</div>
+        <div class="grid grid-cols-4 gap-2">
+            <button class="btn">AC</button>
+            <button class="btn">±</button>
+            <button class="btn">%</button>
+            <button class="btn btn-orange">÷</button>
+
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn btn-orange">×</button>
+
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn btn-orange">-</button>
+
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn btn-plus">+</button>
+
+            <button class="btn col-span-2">0</button>
+            <button class="btn">.</button>
+            <button class="btn btn-orange">=</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for calculator functionality
+        const display = document.getElementById('display');
+        const buttons = document.querySelectorAll('.btn');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Your calculator logic here
+            });
+        });
+    </script>
+</body>
+</html>
